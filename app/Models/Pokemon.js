@@ -12,16 +12,14 @@ export default class Pokemon {
         this.user = data.user;
     }
 
-    get FocusedTemplate() {        
+    get FocusedTemplate() {
         let template = ""
         let source = "https://via.placeholder.com/150"
-        console.log("Amount: ", ProxyState.pokedexPokemon, source)
-        if(ProxyState.pokedexPokemon.length > 0) {
+        if (ProxyState.pokedexPokemon.length > 0) {
             source = ProxyState.pokedexPokemon[0].img
         } else {
             source = ""
         }
-        console.log(source)
         template = /*html*/`
         <div class="card p-0 bg-gray">
             <div class="card-body">
@@ -42,8 +40,31 @@ export default class Pokemon {
                 ${this.CatchRelease}
             </div>
         </div>
+        <div class="card p-0 bg-gray">
+            <div class="card-body">
+                <div class="text-center">
+                    <h5 class="card-title text-primary">${this.name.toUpperCase()} Abilities</h5>
+                </div>
+                <div class="row">
+                    <div class="col-6  pt-4 pb-3 text-center">
+                        ${this.FocusedAbilities}
+                    </div>
+                </div>
+            </div>
+        </div>
         `
 
+        return template;
+    }
+
+    get FocusedAbilities() {
+        //console.log(ProxyState.focusedAbilities.length)
+        let template = ""
+        for (let i = 0; i < ProxyState.focusedAbilities.length; i++) {
+            template += /*html*/`
+                <h4>${ProxyState.focusedAbilities[i].ability.name}</h4>
+            `
+        }
         return template;
     }
 
@@ -51,7 +72,7 @@ export default class Pokemon {
         let fightText = ""
         let catchText = ""
         let template = ""
-        if(this.user == undefined) {
+        if (this.user == undefined) {
             fightText = "FIGHT"
             catchText = "CATCH"
             template += /*html*/`
@@ -92,8 +113,8 @@ export default class Pokemon {
             </div>
             `
         }
-        
 
-            return template;
+
+        return template;
     }
 }

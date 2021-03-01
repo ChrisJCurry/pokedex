@@ -13,6 +13,7 @@ class AppState extends EventEmitter {
   pokedexPokemon = []
 
   focusedPokemon = null;
+  focusedAbilities = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {

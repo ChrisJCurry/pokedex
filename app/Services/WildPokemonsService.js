@@ -13,17 +13,27 @@ class WildPokemonsService {
         try {
             const res = await pokeapi.get("")
             ProxyState.wildPokemon = res.data.results
-        } catch(err) {
+        } catch (err) {
             console.error(err)
         }
     }
 
     async focusChoice(name) {
+        this.getAbilities(name)
         try {
             const res = await pokeapi.get(name)
             ProxyState.focusedPokemon = new Pokemon(res.data)
             document.getElementById("player-img").classList.remove("hidden")
-        }catch(err) {
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    async getAbilities(name) {
+        try {
+            const res = await pokeapi.get(`${name}`)
+            ProxyState.focusedAbilities = res.data.abilities
+        } catch (err) {
             console.error(err)
         }
     }

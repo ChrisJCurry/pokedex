@@ -1,5 +1,5 @@
-import {ProxyState} from '../AppState.js'
-import {pokedexsService} from '../Services/PokedexsService.js'
+import { ProxyState } from '../AppState.js'
+import { pokedexsService } from '../Services/PokedexsService.js'
 
 function _draw() {
     let pokedexPokemon = ProxyState.pokedexPokemon;
@@ -18,7 +18,6 @@ function _draw() {
 
 export default class PokedexsController {
     constructor() {
-        console.log("pokedex controller")
         ProxyState.on("pokedexPokemon", _draw)
         _draw()
     }
